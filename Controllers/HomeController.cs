@@ -10,8 +10,12 @@ namespace Spending.Controllers
     {
         public ActionResult Index()
         {
-            string url = Url.Content("/Content/tracker.html");
-            return Redirect(url); 
+            // Redirect to the html file 
+            //string url = Url.Content("/Content/tracker.html");
+            //return Redirect(url); 
+            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+
+            return View();
         }
     }
 }

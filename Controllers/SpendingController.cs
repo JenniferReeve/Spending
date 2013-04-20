@@ -5,24 +5,28 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Spending.Models;
+using Spending.Filters;
 
 namespace Spending.Controllers
 {
+    [Authorize]
+    [InitializeSimpleMembership]
     public class SpendingController : ApiController
     {
         // Get a list of the settings 
         // Paged list of settings 
-        public IEnumerable<Transactions> Get()
+        [Authorize]
+        public IEnumerable<TransactionModels> Get()
         {
-            return new Transactions[] { 
-                new Transactions()
+            return new TransactionModels[] { 
+                new TransactionModels()
                 {
                     id = 1,
                     dateSpent = DateTime.Today,
                     description = "Test",
                     amount = 40
                 }, 
-                new Transactions() { 
+                new TransactionModels() { 
                     id = 2,
                     dateSpent = DateTime.Today.AddDays(-5),
                     description = "Test 2",
@@ -34,9 +38,10 @@ namespace Spending.Controllers
 
         // GET api/values/5
         // Get settings by id 
-        public Transactions Get(int id)
+        [Authorize]
+        public TransactionModels Get(int id)
         {
-            return new Transactions()
+            return new TransactionModels()
             {
                 id = 2,
                 dateSpent = new DateTime().AddDays(-5),
@@ -46,16 +51,19 @@ namespace Spending.Controllers
         }
 
         // POST api/values
+        [Authorize]
         public void Post([FromBody]string value)
         {
         }
 
         // PUT api/values/5
+        [Authorize]
         public void Put(int id, [FromBody]string value)
         {
         }
 
         // DELETE api/values/5
+        [Authorize]
         public void Delete(int id)
         {
         }

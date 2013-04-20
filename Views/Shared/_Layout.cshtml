@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css/jquery")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/json2")
+    @Scripts.Render("~/bundles/underscore")
+    @Scripts.Render("~/bundles/backbone")
+    @Scripts.Render("~/bundles/SpendingTracker")
 </head>
 <body>
     @RenderBody()
-
-    @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
 </body>
 </html>

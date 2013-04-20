@@ -1,53 +1,88 @@
-﻿<header>
-    <div class="content-wrapper">
-        <div class="float-left">
-            <p class="site-title">
-                <a href="~/">ASP.NET Web API</a></p>
-        </div>
+﻿
+     <div id="spendingapp">
+    <div id="spending-setup">
     </div>
-</header>
-<div id="body">
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>Welcome to ASP.NET Web API!</h1>
-                <h2>Modify the code in this template to jump-start your ASP.NET Web API development.</h2>
-            </hgroup>
-            <p>
-                ASP.NET Web API allows you to expose your applications, data and services to the
-                web directly over HTTP.
-            </p>
-            <p>
-                To learn more about ASP.NET Web API visit
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238195" title="ASP.NET Web API Website">http://asp.net/web-api</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET Web API.
-                If you have any questions about ASP.NET Web API, visit
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238196" title="ASP.NET Web API Forum">our forums</a>.
-            </p>
-        </div>
-    </section>
-    <section class="content-wrapper main-content clear-fix">
-        <h3>We suggest the following steps:</h3>
-        <ol class="round">
-            <li class="one">
-                <h5>Getting Started</h5>
-                ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-                a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-                is an ideal platform for building RESTful applications on the .NET Framework.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245160">Learn more…</a>
-            </li>
+    <div id="spending-wrapper">
+        <header>
+          <h1>Spending Tracker</h1>
+          <div>
+	          <input id="spending-description" class="description" type="text" placeholder="What did you spend money on?" name="description"/>
+	          <input id="spending-date" type="text" name="dateSpent" class="date" placeholder="When did you spend it?"/>
+	          <input id="spending-amount" type="text" name="amount" class="amount" placeholder="How much?"/>
+          </div>
+        </header>
 
-            <li class="two">
-                <h5>Add NuGet packages and jump-start your coding</h5>
-                NuGet makes it easy to install and update free libraries and tools.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245161">Learn more…</a>
-            </li>
-            <li class="three">
-                <h5>Find Web Hosting</h5>
-                You can easily find a web hosting company that offers the right mix of features
-                and price for your applications.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245164">Learn more…</a>
-            </li>
-        </ol>
-    </section>
-</div>
+        <section id="main" style="display: block;">
+          <ul id="spending-list">
+		    <li class="heading">
+			    <label class="label-date">Date</label>
+			    <label class="label-description">Description</label>
+			    <label class="label-spent">Spent</label>
+			    <label class="label-amount">Amount</label>
+		    </li>
+	      </ul>
+        </section>
+
+        <footer style="display: block;">
+   
+        <div class="spending-paging"></div>
+      </footer>
+    </div>
+
+  </div>
+
+  <div id="instructions">
+    Double-click to edit.
+  </div>
+  
+<!-- Templates -->
+<!-- View and editing of each of the spending lines --> 
+<script type="text/template" id="item-template">
+	<div class="view">
+	  <label class="label-date" ><%- dateSpent %></label>
+	  <label class="label-description" ><%- description %></label>
+	  <label class="label-spent"><%- spent %></label>
+	  <label class="label-amount"><%- amount %></label>
+	  <a class="destroy"></a>
+	</div>
+	<input class="edit description" type="text" value="<%- description %>" name="description" /> 
+	<input class="edit date" type="text" value="<%- dateSpent %>" name="dateSpent" />
+	<input class="edit amount" type="text" value="<%- amount %>" name="amount" /> 
+</script>
+
+<script type="text/template" id="stats-template">
+	<a class="setup"></a>
+    <a class="info"></a>
+    <div class="spending-count"><b>$<%= amountSpent %></b> spent</div>
+</script>
+
+<script type="text/template" id="paging-template">
+    <div class="spending-page"><b>1 of 4</b></div>
+</script>
+
+<!-- The settings dialog --> 
+<!-- This dialog is used to setup the application at the start or each period of saving --> 
+<script type="text/template" id="settings-template">
+	<p>This application has been created to track how much money you are spending and tell you when your going to spend more than you are meaning to spend.</p>
+	<p>To get the application started can you please entre the dates you are trying to save money between and how much your trying to save</p>
+	<div class="error-message"></div>
+	<input type="hidden" value="<%- id %>" class="settings" name="id"/> 
+	<label for="startDate">Start Date</label><br/>
+	<input type="text" value="<%- startDate %>" name="startDate" class="date settings" /> 
+	<br />
+	<label for="endDate">End Date</label><br/>
+	<input type="text" value="<%- endDate %>" name="endDate" class="date settings" />
+	<br />
+	<label for="income">Income</label><br/>
+	<input type="text" value="<%- income %>" name="income" class="currency settings spending" />
+	<br /> 
+	<label for="savingGoal">Saving Goal</label><br/>
+	<input type="text" value="<%- savingGoal %>" name="savingGoal" class="currency settings spending" /> 
+	<br /> 
+	<label for="canSpend">Amount your allowed to spend</label><br/>
+	<input type="text" value="<%- canSpend %>" name="canSpend" class="currency settings spending" disabled /> 
+	<br /> 
+	<input type="submit" value="Save" class="save"> 
+	<input type="button" value="Close" class="close">
+</script>
+

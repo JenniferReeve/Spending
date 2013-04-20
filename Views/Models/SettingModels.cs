@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Spending.Models
 {
-    public class Settings
+    public class SettingModels
     {
         public long id { get; set; }
         public DateTime startDate { get; set; }

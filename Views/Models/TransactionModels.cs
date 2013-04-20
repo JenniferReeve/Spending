@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Spending.Models
 {
-    public class Transactions
+    public class TransactionModels
     {
         public long id { get; set; }
         public string description { get; set; }
