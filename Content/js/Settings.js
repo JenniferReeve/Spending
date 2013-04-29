@@ -76,6 +76,7 @@ var SettingsList = Backbone.Collection.extend({
     parse: function (response) {
         return response;
     }
+
 });
 
 var SettingsDialog = Backbone.ModalView.extend({

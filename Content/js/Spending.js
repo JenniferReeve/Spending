@@ -85,7 +85,7 @@ $(function () {
             if (dateA < dateB) return -1
             return 0;
         }
-
+        
     });
 
     // Create our global collection of **Todos**.
@@ -272,4 +272,9 @@ $(function () {
     // Finally, we kick things off by creating the **App**.
     var App = new AppView;
 
+});
+
+jQuery(document).ajaxError(function (event, xhr) {
+    if (xhr.status == 401)
+        window.location = './account/login';
 });
