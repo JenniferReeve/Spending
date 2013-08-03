@@ -307,4 +307,9 @@ body {
 .info:hover {
   	background-image: url(base/images/ui-icons_b83400_256x240.png);
 }
+
+.current-user  
+{
+	float: right;
+}
  

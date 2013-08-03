@@ -41,7 +41,7 @@ namespace Spending.Filters
                         }
                     }
 
-                    WebSecurity.InitializeDatabaseConnection("AuthenticationEntities", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("AuthenticationEntities", "UserAccounts", "Id", "UserName", autoCreateTables: true);
                 }
                 catch (Exception ex)
                 {

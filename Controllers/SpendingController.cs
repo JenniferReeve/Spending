@@ -9,13 +9,12 @@ using Spending.Filters;
 
 namespace Spending.Controllers
 {
-    [Authorize]
     [InitializeSimpleMembership]
+    [Authorize]
     public class SpendingController : ApiController
     {
         // Get a list of the settings 
         // Paged list of settings 
-        [Authorize]
         public IEnumerable<TransactionModels> Get()
         {
             return new TransactionModels[] { 
@@ -38,7 +37,6 @@ namespace Spending.Controllers
 
         // GET api/values/5
         // Get settings by id 
-        [Authorize]
         public TransactionModels Get(int id)
         {
             return new TransactionModels()
@@ -51,19 +49,16 @@ namespace Spending.Controllers
         }
 
         // POST api/values
-        [Authorize]
         public void Post([FromBody]string value)
         {
         }
 
         // PUT api/values/5
-        [Authorize]
         public void Put(int id, [FromBody]string value)
         {
         }
 
         // DELETE api/values/5
-        [Authorize]
         public void Delete(int id)
         {
         }

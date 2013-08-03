@@ -14,8 +14,8 @@ using Spending.Web.Models;
 
 namespace Spending.Controllers
 {
-    [Authorize]
     [InitializeSimpleMembership]
+    [Authorize]
     public class AccountController : Controller
     {
         //

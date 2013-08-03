@@ -9,10 +9,10 @@ namespace Spending
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-1.9.0.js"));
+                        "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-                        "~/Scripts/jquery-ui-1.10.1.js"));
+                        "~/Scripts/jquery-ui-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/json2").Include(
                 "~/Scripts/json2.js"));
@@ -32,7 +32,8 @@ namespace Spending
                 "~/Content/js/Backbone.ModalDialog.js",
                 "~/Content/js/Validation.js",
                 "~/Content/js/Spending.js",
-                "~/Content/js/Settings.js"));
+                "~/Content/js/Settings.js",
+                "~/Content/js/Helper.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -41,7 +42,7 @@ namespace Spending
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/themes/style.css"));
 
-            bundles.Add(new StyleBundle("~/Content/css/jquery").Include("~/Content/themes/base/jquery-ui-1.10.1.css")); 
+            bundles.Add(new StyleBundle("~/Content/css/jquery").Include("~/Content/themes/base/jquery-ui-{version}.css")); 
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

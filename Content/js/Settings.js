@@ -50,6 +50,9 @@ var SettingsModel = Backbone.Model.extend({
         if (!this.get("canSpend")) {
             this.set({ "canSpend": this.defaults().canSpend });
         }
+
+        var result;
+
         //parentForm.set({ "id": this.get("id") });
         //parentForm.set({ "canSpend": this.get("canSpend") });
     },
@@ -63,25 +66,8 @@ var SettingsModel = Backbone.Model.extend({
     }
 });
 
-var SettingsList = Backbone.Collection.extend({
-
-    model: SettingsModel,
-
-    url: '/api/Settings',
-
-    remaining: function () {
-        return this;
-    },
-
-    parse: function (response) {
-        return response;
-    }
-
-});
-
 var SettingsDialog = Backbone.ModalView.extend({
     title: "Setup Spending Tracker",
-    model: SettingsModel,
     width: 600,
     initialize: function () {
         this.template = _.template($('#settings-template').html());
@@ -120,20 +106,17 @@ var SettingsDialog = Backbone.ModalView.extend({
         });
         this.model.save(saveItem, {
             success: function () { return true },
-            error: function (e) { console.log(e);  return false }
+            error: function (e) { console.log(e); return false }
         });
     },
 
-    transformDate: function (date) {
-        if (Validation.DateValidator(date)) return date;
-        return $.datepicker.formatDate(DATE_FORMAT, new Date(date))
-    },
-
     render: function () {
-        this.model.set({ "startDate": this.transformDate(this.model.get("startDate")) });
-        this.model.set({ "endDate": this.transformDate(this.model.get("endDate")) });
-        this.$el.html(this.template(this.model.toJSON()));
-        return this;
+        if (this.model.get("id") == null || !Helper.dateBetween(new Date(this.model.get("startDate")), new Date(this.model.get("endDate")), new Date())) {
+            this.model.set({ "startDate": Helper.transformDate(this.model.get("startDate")) });
+            this.model.set({ "endDate": Helper.transformDate(this.model.get("endDate")) });
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        }
     },
 
     clear: function () {

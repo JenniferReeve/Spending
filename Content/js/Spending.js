@@ -85,7 +85,7 @@ $(function () {
             if (dateA < dateB) return -1
             return 0;
         }
-        
+
     });
 
     // Create our global collection of **Todos**.
@@ -172,8 +172,17 @@ $(function () {
         initialize: function () {
             if (!this.get("id")) {
                 var settings = new SettingsModel(this);
-                var view = new SettingsDialog({ model: settings });
-                view.render().showModal();
+                settings.fetch(
+                    {
+                        success: function () {
+                            var view = new SettingsDialog({ model: settings }).render();
+                            if (view) view.showModal();
+                        },
+                        error: function () {
+                            console.log('Failed to fetch!');
+                        }
+                    }
+                );
             }
         }
 
